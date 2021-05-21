@@ -21,52 +21,60 @@
             <a class="navbar-brand" href="#" >
             <img src="assets/image_gou\GOUniversity_logo.jpg" alt="logo" style="width:100px; border-radius: 100%; float: left;">
             </a>
-            <ul class="navbar-nav">
-               <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home</a>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Manage User
-                  </a>
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="#">Lecturer</a>
-                     <hr>
-                     <a class="dropdown-item" href="#">Student</a>
-                  </div>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Class Routine
-                  </a>
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="#">Add Class Routine</a>
-                  </div>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Academics&Classes
-                  </a>
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="#">Manage Class</a>
-                     <hr>
-                     <a class="dropdown-item" href="#">Study Material</a>
-                  </div>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Chat
-                  </a>
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="#">Lecturer</a>
-                     <hr>
-                     <a class="dropdown-item" href="#">Student</a>
-                  </div>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="disccussion.html">Discussion</a>
-               </li>
-            </ul>
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" style="background: rgba(229, 229, 229, 0.6);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                   <li class="nav-item">
+                      <a class="navbar-a nav-link" href="index.html">Home</a>
+                   </li>
+                   <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Manage User
+                      </a>
+                      <div class="dropdown-menu">
+                         <a class="dropdown-item" href="#">Lecturer</a>
+                         <hr>
+                         <a class="dropdown-item" href="#">Student</a>
+                      </div>
+                   </li>
+                   <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Class Routine
+                      </a>
+                      <div class="dropdown-menu">
+                         <a class="dropdown-item" href="#">Add Class Routine</a>
+                      </div>
+                   </li>
+                   <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Academics & Classes
+                      </a>
+                      <div class="dropdown-menu">
+                         <a class="dropdown-item" href="#">Manage Class</a>
+                         <hr>
+                         <a class="dropdown-item" href="#">Study Material</a>
+                      </div>
+                   </li>
+                   <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      Chat
+                      </a>
+                      <div class="dropdown-menu">
+                         <a class="dropdown-item" href="#">Lecturer</a>
+                         <hr>
+                         <a class="dropdown-item" href="#">Student</a>
+                      </div>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="disccussion.html">Discussion</a>
+                   </li>
+                </ul>
+            </div>
             <!--<form class="form-inline" action="/action_page.php">-->
             <!--   <input class="form-control mr-sm-2" type="text" placeholder="Search">-->
             <!--   <button class="btn btn-success" type="submit">Search</button>-->
@@ -74,20 +82,25 @@
          </nav>
          <div class="container text-center" style="padding-top:15%">
             <p style="color: grey; font-size: 50px; font-weight: bold;
-               font-family: sans-serif;">Developing Student's Connection</p>
+               font-family: sans-serif;">Developing <!--Creating--> Student's Connection</p>
             <a href="login.php" type="button" class="btn btn-primary mx-2">Sign In</a> 
             <a href="registration.php" class="btn btn-primary my-2 my-sm-0 mx-2" type="button">Get Started</a>
          </div>
-         <div class="content font">
-            <p>VISION</p>
-            The vision of Godfrey Okoye University is to produce graduates who would be outstanding in learning, 
-            balanced in character, personality and ready to pursue epistemic unity in all its ramification.
-         </div>
-         <div class="content2 font2">
-            <p>MISSION</p>
-            Godfrey Okoye University dedicates itself to impart quality education aimed at inculcating in
-            students strong personality that will ensure the promotion of religious,
-            cultural and epistemological dialogue.
+         <div class="container mt-4">
+             <diV class="row">
+                 <div class="mission-vission col-sm-4 mx-4">
+                    <p>VISION</p>
+                    The vision of Godfrey Okoye University is to produce graduates who would be outstanding in learning, 
+                    balanced in character, personality and ready to pursue epistemic unity in all its ramification.
+                 </div>
+                 <div class="mission-vission col-sm-4 mx-2">
+                    <p>MISSION</p>
+                    Godfrey Okoye University dedicates itself to impart quality education aimed at inculcating in
+                    students strong personality that will ensure the promotion of religious,
+                    cultural and epistemological dialogue.
+                 </div>
+                 <div class="col-sm-4"></div>
+             </diV>
          </div>
       </div>
       
