@@ -1,0 +1,77 @@
+/* linking the bootstrap icon CDN*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+.bgimage{
+  background-image: url("../image_gou/slide.png"); 
+  background-color: #cccccc; 
+  height: 1000px; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  opacity: 1.4;
+}
+.navcolor{
+    background-color: gray;
+}
+
+.content{
+    padding: 40px;
+    position: absolute;
+    width: 456px;
+    height: 380px;
+    left: 180px;
+    top: 600px;
+    
+    background: rgba(196, 196, 196, 0.5);
+}
+.content2{
+    padding: 40px;
+    position: absolute;
+    width: 456px;
+    height: 380px;
+    left: 636px;
+    top: 600px;
+
+    background: rgba(229, 229, 229, 0.6);
+}
+.font{
+
+font-family: Gothic A1;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 30px;
+text-align: center;
+
+color: black;
+}
+.font2{
+
+
+font-family: Gothic A1;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 30px;
+text-align: center;
+
+color: black;
+
+}
+.div_color{
+    background-color: lightgray;
+}
+/* .move{
+    margin-left: 50%;
+} */
+
+.mssg-input{
+    position: absolute;
+    bottom: 40px;
+    right: 5;
+}
+
+.mssg-btn{
+    position: absolute;
+    bottom: 40px;
+    left: 5;
+}
