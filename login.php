@@ -33,7 +33,7 @@
        
       <nav class="navbar navbar-expand-sm bak navbar-light justify-content-center ">
          <!-- Brand/logo -->
-         <a class="navbar-brand" href="index.html">
+         <a class="navbar-brand" href="index.php">
          <img src="assets/image_gou\GOUniversity_logo.jpg" alt="logo" style="width:150px;">
          </a>
       </nav>
@@ -49,7 +49,7 @@
                      <div class="form-group">
                         <label class="mt-4" for="email">Username</label><span class="text-danger"> *<?php echo $reg_no_err;?></span>
                         <input type="text" name="email" class="form-control" id="email" placeholder="Enter email or reg no." style="border-radius:12px;" required>
-                        <label class="mt-4" for="password">Password</label><span class="text-danger"> *<?php echo $password_err;?></span>
+                        <label class="mt-4" for="password">Password</label><span class="text-danger"> *</span>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" style="border-radius:12px;" required>
                         <br><br><br>
                         <p>Don't have an account? <a href="registration.php">Sign up now</a>.</p>

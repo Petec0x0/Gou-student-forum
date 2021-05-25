@@ -156,9 +156,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         $sql = "INSERT INTO students 
                 (`email`,`password`,`firstname`,`lastname`,`reg_no`,`address`,`phone_no`,`level`,`gender`,`image`) 
                 VALUES (?,?,?,?,?,?,?,?,?,?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssssssss", $email,$hashed_password,$firstname,$lastname,$reg_no,$address,$phone_no,$level,$gender,$image_path);
-        $stmt->execute();
+        $stmt = mysqli_prepare($conn,$sql);
+        mysqli_stmt_bind_param($stmt, "ssssssssss", $email,$hashed_password,$firstname,$lastname,$reg_no,$address,$phone_no,$level,$gender,$image_path);
+        mysqli_stmt_execute($stmt);
         
         // redirect the user to the login page with a success message
         $message = 'Student account created sucessfully! <br> Login to continue.';
@@ -166,8 +166,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     }
     
 }elseif($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])){
-    $email =$_POST['email'];
-    $password = $_POST['password'];
+    // get the value for email POST parameter and sanitize the input
+    $email = mysqli_real_escape_string($conn,test_input($_POST["email"]));
+    // get the value for password POST parameter and sanitize the input
+	$password = mysqli_real_escape_string($conn,test_input($_POST["password"]));
+	
+	// make sure the user inputs are not empty
+	if(empty($email) || empty($password)){
+			$reg_no_err = "Input field cannot be empty";
+	}else{
+	    $sql = "SELECT * FROM students WHERE email = '$email'";
+		$result = mysqli_query($conn, $sql);
+		$result_check = mysqli_num_rows($result);
+		if($result_check < 1){
+	    	$reg_no_err = "Invali Username/Password";
+		}else{
+		    if($row = mysqli_fetch_assoc($result)){
+		    	//checking the hashed password
+				$hashed_password_check = password_verify($password, $row["password"]);
+				if($hashed_password_check == false){
+					$reg_no_err = "Invali Username/Password";
+				}elseif($hashed_password_check == true){
+					// Log in the user here
+            	    $_SESSION["s_user_id"] = $row["id"];
+            	    $_SESSION["s_email"] = $row["email"];
+            	    $_SESSION["s_firstname"] = $row["firstname"];
+            	    $_SESSION["s_lastname"] = $row["lastname"];
+            	    $_SESSION["s_phone"] = $row["phone_no"];
+            	    
+            	    // redirect the studen to dashboard page 
+                    Header("Location: disccussion.php");
+				}
+			}
+		    
+		}
+	}
 
 }
 

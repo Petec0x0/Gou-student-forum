@@ -22,7 +22,7 @@
        <!--##############################-->
       <nav class="navbar navbar-expand-sm bak navbar-light justify-content-center ">
          <!-- Brand/logo -->
-         <a class="navbar-brand" href="index.html">
+         <a class="navbar-brand" href="index.php">
          <img src="assets/image_gou\GOUniversity_logo.jpg" alt="logo" style="width:150px;">
          </a>
       </nav>

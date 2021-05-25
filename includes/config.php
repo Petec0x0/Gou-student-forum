@@ -1,10 +1,12 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'trisjtsv_new_user');
-define('DB_PASSWORD', 'Thenewuserpassword');
-define('DB_NAME', 'trisjtsv_student_forum_db');
 
-$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$server_name = "localhost";
+$dbUsername = "trisjtsv_new_user";
+$dbPassword = "Thenewuserpassword";
+$dbName = "trisjtsv_student_forum_db";
+
+$conn  = mysqli_connect($server_name, $dbUsername, $dbPassword, $dbName);
+
 //check connection
 if($conn === false){
 	die("ERROE: Could not connect. " .
