@@ -20,13 +20,21 @@
             include('includes/processing.php');
             
             // check if user was redirected with a message
-            if($_REQUEST['success']){
-                $message = $_REQUEST['success'];
+            if(isset($_REQUEST['message'])){
+                $message = $_REQUEST['message'];
+                $category = $_REQUEST['category'];
                 // dislay the message
-                echo '<div class="alert alert-success alert-dismissible text-center" role="alert">
+                echo '<div class="alert alert-'.$category.' alert-dismissible text-center" role="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                       '.$message.'
                     </div>';
+            }
+            
+            // redirect the user if already authenticated
+            if(isset($_SESSION["authenticated"]) &&  
+                $_SESSION["authenticated"] === true){
+            	Header("Location: disccussion.php");
+            	exit;
             }
        ?>
        <!--##############################-->

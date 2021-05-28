@@ -1,3 +1,8 @@
+<?php
+    //initialize the session
+    session_start();
+?>
+
 <nav class="navbar navbar-expand-sm bak navbar-light justify-content-left ">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#" >
@@ -16,29 +21,9 @@
            </li>
            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Manage User
-              </a>
-              <div class="dropdown-menu">
-                 <a class="dropdown-item" href="#">Lecturer</a>
-                 <hr>
-                 <a class="dropdown-item" href="#">Student</a>
-              </div>
-           </li>
-           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Class Routine
-              </a>
-              <div class="dropdown-menu">
-                 <a class="dropdown-item" href="class_routine.php">Add Class Routine</a>
-              </div>
-           </li>
-           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               Academics & Classes
               </a>
               <div class="dropdown-menu">
-                 <a class="dropdown-item" href="manage_class.php">Manage Class</a>
-                 <hr>
                  <a class="dropdown-item" href="study_manager.php">Study Material</a>
               </div>
            </li>
@@ -57,8 +42,13 @@
            </li>
         </ul>
     </div>
-    <!--<form class="form-inline" action="/action_page.php">-->
-    <!--   <input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-    <!--   <button class="btn btn-success" type="submit">Search</button>-->
-    <!--</form>-->
+    
+    <?php
+        if(isset($_SESSION["authenticated"])){
+            echo '<div>
+                    <a class="mx-2"> Welcome, '.$_SESSION["s_firstname"].'</a>
+                    <a href="logout.php" type="button" class="btn btn-outline-danger mx-2">Logout</a>
+                  </div>';
+        }
+    ?>
  </nav>

@@ -1,4 +1,0 @@
-Format code
-Arrange assets
-Image validation
-unique Reg_no & Email

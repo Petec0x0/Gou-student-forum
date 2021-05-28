@@ -1,12 +1,9 @@
 <?php
-include_once "includes/config.php";
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
- }
+//initialize the session
+session_start();
 
+// import the database connection
+include_once "includes/config.php";
 
 //creating variables for form validation
 $firstname_valid = $lastname_valid = $email_valid = $reg_no_valid = $address_valid = $phone_no_valid = 
@@ -133,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         }
     }else{
         // give a default file path for the image
-        $image_path = "/assets/image_gou/index.png";
+        $image_path = "assets/image_gou/index.png";
         $image_valid = true;
     }
     
@@ -162,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         
         // redirect the user to the login page with a success message
         $message = 'Student account created sucessfully! <br> Login to continue.';
-        Header("Location: login.php?success=".$message);
+        Header("Location: login.php?message=".$message."&category=success");
     }
     
 }elseif($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])){
@@ -185,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 		    	//checking the hashed password
 				$hashed_password_check = password_verify($password, $row["password"]);
 				if($hashed_password_check == false){
-					$reg_no_err = "Invali Username/Password";
+					$reg_no_err = "Invalid Username/Password";
 				}elseif($hashed_password_check == true){
 					// Log in the user here
             	    $_SESSION["s_user_id"] = $row["id"];
@@ -193,12 +190,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             	    $_SESSION["s_firstname"] = $row["firstname"];
             	    $_SESSION["s_lastname"] = $row["lastname"];
             	    $_SESSION["s_phone"] = $row["phone_no"];
+            	    $_SESSION["authenticated"] = true;
+            	    $_SESSION["student_authenticated"] = true;
             	    
             	    // redirect the studen to dashboard page 
                     Header("Location: disccussion.php");
 				}
 			}
-		    
 		}
 	}
 
