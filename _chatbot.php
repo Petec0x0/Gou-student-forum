@@ -35,7 +35,9 @@
 						// iterate through the fetched result and display it
 						while($row = mysqli_fetch_array($result)) {
 							echo '<div class="row jumbotron mx-2" style="padding: 5px;" 
-									onclick="showActiveChat({image_path:\''.$row['image'].'\',name:\''.$row['firstname'].' '.$row['lastname'].'\'})">
+									onclick="showActiveChat(
+											{image_path:\''.$row['image'].'\',name:\''.$row['firstname'].' '.$row['lastname'].'\',user_id:'.$row['id'].'}
+								  )">
 									<div class="col-sm-2"  style="max-width: 60px;">
 										<img src="'.$row['image'].'" class="img-responsive rounded-circle"
 											 style="max-width: 50px ; max-height: 50px;width: 50px; height: 50px;">
@@ -55,11 +57,11 @@
 						<div class="card bg-primary text-white">
 							<div class="card-body row" style="padding: 3px">
 								<div class="col-sm-2"  style="max-width: 60px;">
-									<img id="activeChatPic" src="http://127.0.0.1/sf/uploads/49640308.jpeg" class="img-responsive rounded-circle"
+									<img id="activeChatPic" src="assets/image_gou/index.png" class="img-responsive rounded-circle"
 										 style="max-width: 50px ; max-height: 50px;width: 50px; height: 50px;">
 								</div>
 								<div class="col-sm-8">
-									<small id="activeChatName">CHOCOS MILO</small>
+									<small id="activeChatName">DuMmY nAmE</small>
 								</div>
 							</div>
 						</div>
@@ -67,10 +69,10 @@
 							<div class="row">
 								<div class="col-sm-10" style="padding-right: 0px; padding-bottom: 0px;">
 									<!-- Auto-Growing and Expandable Input -->
-								   <span class="textarea" role="textbox" contenteditable></span>
+								   <span id="messageBox" class="textarea" role="textbox" contenteditable></span>
 								</div>
 								<div class="col-sm-2" style="padding: 0px">
-									<i class="btn btn-primary" style="border-radius:12px;">Send</i>
+									<i class="btn btn-primary" style="border-radius:12px;" onclick="sendMessage()">Send</i>
 								</div>
 							</div>
 						</div>
