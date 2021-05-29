@@ -22,17 +22,60 @@
          <!--##############################-->
            <?php
                 include('includes/header.php');
+				include('includes/config.php');
            ?>
         <!--##############################-->
          <div class="container mt-4" style="background-color: white;">
-            <div class="board row" style="width: 100%; height: 450px;">
-               <div class="col-sm-10">
-                  <input class="mssg-input" type="text" name="message" placeholder="Type your message here" style="border-radius:12px; width: 100%; padding:5px;" required>
-               </div>
-               <div class="col-sm-2">
-                  <a href="create_discussion.html" type="button" class="btn mx-2 float-right btn-primary mssg-btn" style=" color: white; border-radius:50px;">
-                  Send</a> 
-               </div>
+            <div class="board row" style="width: 100%; min-height: 450px;">
+               <div class="col-sm-6 mt-2" style="max-height: 450px; overflow-y: scroll;">
+					<?php
+						// fetch all discussion from the database using the SELECT statement
+						$sql = "SELECT * FROM students WHERE true";
+						$result = mysqli_query($conn, $sql);
+						// iterate through the fetched result and display it
+						while($row = mysqli_fetch_array($result)) {
+							echo '<div class="row jumbotron mx-2" style="padding: 5px;" 
+									onclick="showActiveChat({image_path:\''.$row['image'].'\',name:\''.$row['firstname'].' '.$row['lastname'].'\'})">
+									<div class="col-sm-2"  style="max-width: 60px;">
+										<img src="'.$row['image'].'" class="img-responsive rounded-circle"
+											 style="max-width: 50px ; max-height: 50px;width: 50px; height: 50px;">
+									</div>
+									<div class="col-sm-10">
+										<small><a href="#">'.$row['firstname'].' '.$row['lastname'].'</a></small><br>
+										<small><i>Student</i></small>
+									</div>
+								</div>';
+						}   
+					?>
+					
+					
+			   </div>
+			   <div id="activeChat" class="col-sm-6">
+					<div class="container-fluid">
+						<div class="card bg-primary text-white">
+							<div class="card-body row" style="padding: 3px">
+								<div class="col-sm-2"  style="max-width: 60px;">
+									<img id="activeChatPic" src="http://127.0.0.1/sf/uploads/49640308.jpeg" class="img-responsive rounded-circle"
+										 style="max-width: 50px ; max-height: 50px;width: 50px; height: 50px;">
+								</div>
+								<div class="col-sm-8">
+									<small id="activeChatName">CHOCOS MILO</small>
+								</div>
+							</div>
+						</div>
+						<div class="position-bottom">
+							<div class="row">
+								<div class="col-sm-10" style="padding-right: 0px; padding-bottom: 0px;">
+									<!-- Auto-Growing and Expandable Input -->
+								   <span class="textarea" role="textbox" contenteditable></span>
+								</div>
+								<div class="col-sm-2" style="padding: 0px">
+									<i class="btn btn-primary" style="border-radius:12px;">Send</i>
+								</div>
+							</div>
+						</div>
+					</div>
+			   </div>
             </div>
          </div>
       </div>
@@ -43,5 +86,7 @@
       <script src="assets/js/popper.min.js"></script>
       <!-- Latest compiled JavaScript -->
       <script src="assets/js/bootstrap.min.js"></script>
+	  <!-- Chat JS Code -->
+      <script src="assets/js/chat.js"></script>
     </body>
 </html>
