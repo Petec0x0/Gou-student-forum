@@ -18,7 +18,7 @@ function generateRandomString($length = 5) {
 
  
 // check if a create-discussion post request have been sent
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-discussion'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendChat'])) {
     $title = test_input($_POST['title']);
     $category_id = $_POST['category_id'];
     $message = $_POST['message'];
@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-discussion']))
     }else{
         $slug = 'discussion'.generateRandomString() . time();
 		// check if the checked or not
-		/*if(empty($_POST["category_id"])){
+		if(empty($_POST["category_id"])){
 			// if category_id is not checked give it a default of 1(General)
 			$category_id = 1;
-		}*/
+		}
 		
 		// store the collected data to the database
         $sql = "INSERT INTO discussion 
