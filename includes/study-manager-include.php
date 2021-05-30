@@ -66,7 +66,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		// redirect the user to the login page with a success message
         $message = 'Study material uploaded sucessfully!';
         Header("Location: study_manager.php?message=".$message."&category=success");
-	}else{
-		echo 'Free, high quality, open source icon library with over 1,300 icons. Include them anyway you like—SVGs, SVG sprite, or web fonts. Use them with or without Bootstrap in any project.';
 	}
+}
+
+// check if post request is sent
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['docs-path'])) {
+    $docs_id = $_POST['docs-id'];
+    $docs_path = $_POST['docs-path'];
+    
+    // the delete query for deleting study material from the database using the ID
+    $sql = "DELETE FROM study_material WHERE id = '$docs_id'";
+    if(mysqli_query($conn, $sql)){
+        // Use unlink() function to delete a file 
+        if(unlink($docs_path)) { 
+            // redirect the user to the login page with a success message
+            $message = 'Study material was deleted sucessfully!';
+            Header("Location: study_manager.php?message=".$message."&category=info");
+        } 
+    }
 }

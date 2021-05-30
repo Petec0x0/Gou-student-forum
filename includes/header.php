@@ -24,7 +24,9 @@
               Academics & Classes
               </a>
               <div class="dropdown-menu">
-                 <a class="dropdown-item" href="study_manager.php">Study Material</a>
+                    <a class="dropdown-item" href="study_manager.php">Study Material</a>
+                    <a class="dropdown-item" href="class_routine.php">Class Routine</a>
+                    <a class="dropdown-item" href="#">Assignments</a>
               </div>
            </li>
            <li class="nav-item dropdown">
@@ -34,11 +36,11 @@
               <div class="dropdown-menu">
                  <a class="dropdown-item" href="#">Lecturer</a>
                  <hr>
-                 <a class="dropdown-item" href="#">Student</a>
+                 <a class="dropdown-item" href="student-chat.php">Student</a>
               </div>
            </li>
            <li class="nav-item">
-              <a class="nav-link" href="disccussion.php">Discussion</a>
+              <a class="nav-link" href="disccussion.php">Discussions</a>
            </li>
         </ul>
     </div>

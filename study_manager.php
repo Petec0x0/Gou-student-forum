@@ -69,6 +69,7 @@
                      </tr>
 					 <tbody>
 						<?php
+						    $current_user = $_SESSION["s_user_id"];
 							// fetch all categories from the database using the SELECT statement								
 							$sql = "SELECT * FROM study_material WHERE true";
 							$result = mysqli_query($conn, $sql);
@@ -77,16 +78,40 @@
 							while($row = mysqli_fetch_array($result)) {
 								$uploaded_at = $row['uploaded_at'];
 								$date = strtotime($uploaded_at);
-								echo '<tr>
+								if($current_user == $row['owner_id']){
+								    echo '<tr>
 										<td >'.$count.'</td>
 										<td>'.date("D/M/Y h:i:s", $date).'</td>
 										<td>'.$row['title'].'</td>
 										<td>'.$row['description'].'</td>
 										<td>
-											<i title="Delete" class="bi bi-trash-fill mx-4" style="color:red"></i>
-											<i title="Download" class="bi bi-cloud-download-fill" style="color:blue"></i>
+											<a href="'.$row['document_path'].'">
+											    <i title="Download" class="bi bi-cloud-download-fill" style="color: #007bff"></i>
+											</a>
+											<form name="formForDocWithId_'.$row['id'].'" method="POST" action="" style="display: inline;">
+											    <input type="hidden" name="docs-id" value="'.$row['id'].'">
+											    <input type="hidden" name="docs-path" value="'.$row['document_path'].'">
+											    <button type="button" name="delete-docs" class="btn" onclick="confrimDocDelete(\'formForDocWithId_'.$row['id'].'\')">
+											        <i title="Delete" class="bi bi-trash-fill mx-4" style="color:red"></i>
+											    </button>
+											</form>
 										</td>
 									</tr>';
+								}else{
+								    echo '<tr>
+										<td >'.$count.'</td>
+										<td>'.date("D/M/Y h:i:s", $date).'</td>
+										<td>'.$row['title'].'</td>
+										<td>'.$row['description'].'</td>
+										<td>
+											<a href="'.$row['document_path'].'">
+											    <i title="Download" class="bi bi-cloud-download-fill" style="color: #007bff"></i>
+											</a>
+										</td>
+									</tr>';
+								}
+								// increment count or S/N 
+								$count++;
 							}   
 						?>
 						
@@ -140,6 +165,18 @@
 		</div>
 	  </div>
       
+      <script>
+          // this funtion requests user permission to delete the study material
+          function confrimDocDelete(formName){
+              // pop up a confirmation message
+              var confirmation = confirm("Are you sure you want to delete this study material?")
+              if(confirmation){
+                  // submit the specified form once the confirmation is true
+                  document.forms[formName].submit();
+              }
+          }
+          
+      </script>
       <!-- jQuery library -->
       <script src="assets/js/jquery.min.js"></script>
       <!-- Popper JS -->
