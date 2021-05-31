@@ -48,10 +48,10 @@
 								if(isset($_REQUEST['category_id'])){
 									$category = $_REQUEST['category_id'];
 									// fetch all discussion from the database using the SELECT statement
-								$sql = "SELECT * FROM discussion WHERE category_id = '$category'";
+								$sql = "SELECT * FROM discussion WHERE category_id = '$category' ORDER BY created_at DESC";
 								}else{
 									// fetch all discussion from the database using the SELECT statement
-									$sql = "SELECT * FROM discussion WHERE true";
+									$sql = "SELECT * FROM discussion WHERE true ORDER BY created_at DESC";
 								}
 								$result = mysqli_query($conn, $sql);
 								// iterate through the fetched result and display it

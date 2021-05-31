@@ -33,7 +33,16 @@
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
 						  '.$message.'
 						</div>';
-				}				
+				}
+				
+				// redirect the user to the login page if not authenticated
+                if(!(isset($_SESSION["authenticated"]) &&  
+                    $_SESSION["authenticated"] === true)){
+                	// redirect the user to the login page with a success message
+                    $message = 'Access denied <br> Login to continue.';
+                    Header("Location: login.php?message=".$message."&category=danger");
+                	exit;
+                }
            ?>
           <!--##############################-->
          <i class="bi bi-arrow-right-circle-fill" style="font-size: 25px; 

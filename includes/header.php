@@ -26,7 +26,7 @@
               <div class="dropdown-menu">
                     <a class="dropdown-item" href="study_manager.php">Study Material</a>
                     <a class="dropdown-item" href="class_routine.php">Class Routine</a>
-                    <a class="dropdown-item" href="#">Assignments</a>
+                    <a class="dropdown-item" href="assignments.php">Assignments</a>
               </div>
            </li>
            <li class="nav-item dropdown">
@@ -34,7 +34,7 @@
               Chat
               </a>
               <div class="dropdown-menu">
-                 <a class="dropdown-item" href="#">Lecturer</a>
+                 <a class="dropdown-item" href="lecturer-chat.php">Lecturer</a>
                  <hr>
                  <a class="dropdown-item" href="student-chat.php">Student</a>
               </div>

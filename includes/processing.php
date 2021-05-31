@@ -172,7 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 	if(empty($email) || empty($password)){
 			$reg_no_err = "Input field cannot be empty";
 	}else{
-	    $sql = "SELECT * FROM students WHERE email = '$email'";
+	    $sql = "SELECT id, email, firstname, lastname, password FROM students WHERE email = '$email' 
+	            UNION SELECT id, email, firstname, lastname, password FROM lecturer WHERE email = '$email'";
 		$result = mysqli_query($conn, $sql);
 		$result_check = mysqli_num_rows($result);
 		if($result_check < 1){
@@ -189,9 +190,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             	    $_SESSION["s_email"] = $row["email"];
             	    $_SESSION["s_firstname"] = $row["firstname"];
             	    $_SESSION["s_lastname"] = $row["lastname"];
-            	    $_SESSION["s_phone"] = $row["phone_no"];
             	    $_SESSION["authenticated"] = true;
-            	    $_SESSION["student_authenticated"] = true;
+            	    // authenticate the lecturer if the user id is greater than 5
+            	    // all lecturers id are greater than 5 by default
+            	    if(strlen($_SESSION["s_user_id"]) > 5){
+            	        $_SESSION["lecturer_authenticated"] = true;
+            	    }else{
+            	        $_SESSION["student_authenticated"] = true;
+            	    }
+            	    
             	    
             	    // redirect the studen to dashboard page 
                     Header("Location: disccussion.php");

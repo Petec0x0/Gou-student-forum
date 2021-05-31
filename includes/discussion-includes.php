@@ -4,7 +4,8 @@ include_once "includes/config.php";
 
 function getUser($userId){
 	global $conn;
-	$sql = "SELECT * FROM students WHERE id = '$userId'";
+	$sql = "SELECT id, firstname, image FROM students WHERE id = '$userId' 
+	            UNION SELECT id, firstname, image FROM lecturer WHERE id = '$userId'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
 	return array('firstname'=>$row["firstname"], 'image_path'=>$row["image"]);

@@ -18,9 +18,8 @@ function generateRandomString($length = 5) {
 
  
 // check if a create-discussion post request have been sent
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendChat'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-discussion'])) {
     $title = test_input($_POST['title']);
-    $category_id = $_POST['category_id'];
     $message = $_POST['message'];
 	
 	// get the author's id (The id of the user who posted the discussion)
@@ -35,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendChat'])) {
 		if(empty($_POST["category_id"])){
 			// if category_id is not checked give it a default of 1(General)
 			$category_id = 1;
+		}else if(isset($_POST["category_id"])){
+		    $category_id = $_POST['category_id'];
 		}
 		
 		// store the collected data to the database
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendChat'])) {
         mysqli_stmt_bind_param($stmt, "sssss", $title,$slug,$message,$category_id,$author_id);
         mysqli_stmt_execute($stmt);
 		
-		// redirect the user to the login page with a success message
+		// redirect the user to the disccussion page with a success message
         $message = 'Discussion created sucessfully!';
         Header("Location: disccussion.php?message=".$message."&category=success");
     }

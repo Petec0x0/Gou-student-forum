@@ -34,7 +34,7 @@
                    <h4 class="font-size: 50px; font-weight:bold;">Registration Form</h4>
                 </div>
                 <div class=" container-fluid mt-4">
-                   <form role="form" method="post" action="" enctype="multipart/form-data">
+                   <form role="form" method="POST" action="" enctype="multipart/form-data">
                        <div class="row">
                            <div class="col-sm-4"></div>
                            <div class="col-sm-4">

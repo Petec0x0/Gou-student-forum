@@ -85,15 +85,13 @@
 										<td>'.$row['title'].'</td>
 										<td>'.$row['description'].'</td>
 										<td>
-											<a href="'.$row['document_path'].'">
+											<a href="'.$row['document_path'].'" style="display: inline;">
 											    <i title="Download" class="bi bi-cloud-download-fill" style="color: #007bff"></i>
 											</a>
-											<form name="formForDocWithId_'.$row['id'].'" method="POST" action="" style="display: inline;">
+											<form name="formForDocWithId_'.$row['id'].'" method="POST" action="" class="form-check form-check-inline">
 											    <input type="hidden" name="docs-id" value="'.$row['id'].'">
 											    <input type="hidden" name="docs-path" value="'.$row['document_path'].'">
-											    <button type="button" name="delete-docs" class="btn" onclick="confrimDocDelete(\'formForDocWithId_'.$row['id'].'\')">
-											        <i title="Delete" class="bi bi-trash-fill mx-4" style="color:red"></i>
-											    </button>
+											    <i title="Delete" class="bi bi-trash-fill" style="color:red" onclick="confrimDocDelete(\'formForDocWithId_'.$row['id'].'\')"></i>
 											</form>
 										</td>
 									</tr>';
