@@ -150,7 +150,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Add Lecturer</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -161,7 +161,7 @@
                                    <div class="col-sm-4"></div>
                                    <div class="col-sm-4">
                                        <div class="text-center">
-                                          <img id="uploadPreview" src="assets/image_gou\index.png" class="img-responsive img-thumbnail"
+                                          <img id="uploadPreview" src="../assets/image_gou\index.png" class="img-responsive img-thumbnail"
                                              style="max-width: 100px;max-height: 100px;width: 100px; height: 100px;">
                                           <input id="uploadImage" class="form-control" type="file" name="filename" id="filename" onchange="PreviewImage();">
                                           <p><span class="text-danger"> <?php echo $image_err;?></span></p>

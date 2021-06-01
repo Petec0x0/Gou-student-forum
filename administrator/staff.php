@@ -25,9 +25,7 @@
 <body id="page-top">
     <!--##############################-->
        <?php
-             //initialize the session
-            session_start();
-            include('../includes/config.php');
+            include('processes.include.php');
             
             // redirect the user to the login page if not authenticated
             if(!(isset($_SESSION["admin_authenticated"]) &&  
@@ -37,58 +35,6 @@
                 Header("Location: index.php?message=".$message."&category=danger");
             	exit;
             }
-            
-            // get the number of students registered on the forum
-            function getStudentCount(){
-                global $conn;
-                $sql = "SELECT COUNT(id) FROM students";
-                $stmt = mysqli_prepare($conn, $sql);  
-                if(mysqli_stmt_execute($stmt)) { 
-                    mysqli_stmt_bind_result($stmt, $total_num_of_students);
-                    mysqli_stmt_fetch($stmt);   
-                    return $total_num_of_students;
-                }
-            }
-            
-            // get the number of lecturers registered on the forum
-            function getLecturerCount(){
-                global $conn;
-                $sql = "SELECT COUNT(id) FROM lecturer";
-                $stmt = mysqli_prepare($conn, $sql);  
-                if(mysqli_stmt_execute($stmt)) { 
-                    mysqli_stmt_bind_result($stmt, $total_num_of_lecturers);
-                    mysqli_stmt_fetch($stmt);   
-                    return $total_num_of_lecturers;
-                }
-            }
-            
-            // get the number of discussions created on the forum
-            function getDiscussionsCount(){
-                global $conn;
-                $sql = "SELECT COUNT(id) FROM discussion";
-                $stmt = mysqli_prepare($conn, $sql);  
-                if(mysqli_stmt_execute($stmt)) { 
-                    mysqli_stmt_bind_result($stmt, $total_num_of_discussions);
-                    mysqli_stmt_fetch($stmt);   
-                    return $total_num_of_discussions;
-                }
-            }
-            
-            // get the number of replies created on the forum
-            function getRepliesCount(){
-                global $conn;
-                $sql = "SELECT COUNT(id) FROM replies";
-                $stmt = mysqli_prepare($conn, $sql);  
-                if(mysqli_stmt_execute($stmt)) { 
-                    mysqli_stmt_bind_result($stmt, $total_num_of_replies);
-                    mysqli_stmt_fetch($stmt);   
-                    return $total_num_of_replies;
-                }
-            }
-            
-            
-            
-            
         ?>
      <!--##############################-->
 
@@ -204,91 +150,51 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Registerd Staff</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Number of Student
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><? echo getStudentCount(); ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        
+                        
+                        
+                        <div class="container mt-4 table-responsive">
+                            <table class="table table-bordered">
+                             <tr class="div_color">
+                                <td >#</td>
+                                <td>FirstName</td>
+                                <td>LastName</td>
+                                <td>Email</td>
+                                <td>Phone No.</td>
+                             </tr>
+                             <tbody>
+                            	<?php
+                            		// fetch all categories from the database using the SELECT statement								
+                            		$sql = "SELECT * FROM lecturer WHERE true";
+                            		$result = mysqli_query($conn, $sql);
+                            		// iterate through the fetched result and display it
+                            		$count = 1;
+                            		while($row = mysqli_fetch_array($result)) {
+                            			$uploaded_at = $row['uploaded_at'];
+                            			$date = strtotime($uploaded_at);
+                                		echo '<tr>
+                            					<td >'.$count.'</td>
+                            					<td>'.$row['firstname'].'</td>
+                            					<td>'.$row['lastname'].'</td>
+                            					<td>'.$row['email'].'</td>
+                            					<td>'.$row['phone'].'</td>
+                            				</tr>';
+                            			// increment count or S/N 
+                            			$count++;
+                            		}   
+                            	?>
+                            	
+                             </tbody>
+                            </table>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Number of Staff
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><? echo getLecturerCount(); ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Total Number of Discussion
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><? echo getDiscussionsCount(); ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comment fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Number of Discussion Comments
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><? echo getRepliesCount(); ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -336,6 +242,7 @@
             </div>
         </div>
     </div>
+    
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
